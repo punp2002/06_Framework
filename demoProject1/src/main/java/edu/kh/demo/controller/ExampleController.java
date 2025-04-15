@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller // 요청/응답 제어 역할 명시 + Bean 등록
 public class ExampleController {
+	
+	// 요청 주소
+	// todo/test/insert, todo/test/update , todo/test/delete
+	
 
 	/* 1) @RequestMapping("주소")
 	 * 

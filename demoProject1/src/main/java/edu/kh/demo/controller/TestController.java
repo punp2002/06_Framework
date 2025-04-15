@@ -58,13 +58,13 @@ public class TestController {
 	@RequestMapping("/todo")
 	public class TestController {
 	
-		@RequestMapping("/insert")
+		@RequestMapping("/update")
 		public String 메서드명() {}
 		
 		@RequestMapping("/insert")
 		public String 메서드명() {}
 		
-		@RequestMapping("/insert")
+		@RequestMapping("/delete")
 		public String 메서드명() {}
 		
 	}	
