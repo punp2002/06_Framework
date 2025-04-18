@@ -45,17 +45,17 @@ button {
 }
 
 #goToList {
-  background-color: #007bff;
+  background-color: #5ea7f5;
   color: white;
 }
 
 #updateBtn {
-  background-color: #ffc107;
+  background-color: #f1d275;
   color: white;
 }
 
 #deleteBtn {
-  background-color: #dc3545;
+  background-color: #f06976;
   color: white;
 }
 
