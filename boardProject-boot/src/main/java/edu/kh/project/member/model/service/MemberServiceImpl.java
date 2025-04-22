@@ -57,7 +57,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	
-	
+	@Override
+	public int checkEmail(String memberEmail) {
+		// TODO Auto-generated method stub
+		return mapper.checkEmail(memberEmail);
+	}
 	
 	
 	
