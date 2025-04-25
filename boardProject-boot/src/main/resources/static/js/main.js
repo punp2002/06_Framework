@@ -56,26 +56,36 @@ if(loginEmail != null) { // 로그인폼의 이메일 input 태그가 화면상�
   }
 }
 
-// 로그인 버튼 클릭 시 수행
-loginForm.addEventListener("submit", function(e) {
+// 이메일, 비밀번호 미작성 시 로그인 막기
 
-  const email = loginForm.querySelector("input[name='memberEmail']");
-  const password = loginForm.querySelector("input[name='memberPw']");
+const loginPw = document.querySelector("#loginForm input[name='memberPw']"); // 비밀번호 input 태그
 
-  // 이메일 입력 안 했을 때
-  if (email.value.trim().length === 0) {
-    alert("이메일을 입력해주세요.");
-    email.focus();
-    e.preventDefault(); // form 제출 막기
-    return;
-  }
+// #loginForm 이 화면에 존재할 때 (== 로그인 상태 아닐 때)
+// -> 로그인 되었다면 타임리프에 의해  #loginForm 요소는 화면에 노출되지 않음
+// -> 로그인 상태일 때 loginForm 을 이용한 코드가 수행된다면
+// -> 콘솔창에 error 발생 
 
-  // 비밀번호 입력 안 했을 때
-  if (password.value.trim().length === 0) {
-    alert("비밀번호를 입력해주세요.");
-    password.focus();
-    e.preventDefault(); 
-    return;
-  }
-});
+if(loginForm != null) { // 로그인 안된 상태일때 
+
+  // 제출 이벤트 발생 시 
+  loginForm.addEventListener("submit", e => {
+
+    // 이메일 미작성
+    if(loginEmail.value.trim().length === 0) {
+      alert("이메일을 작성해주세요!");
+      e.preventDefault(); // 기본 이벤트(제출) 막기
+      loginEmail.focus(); // 초점 이동
+      return;
+    }
+
+    // 비밀번호 미작성
+    if(loginPw.value.trim().length === 0) {
+      alert("비밀번호를 작성해주세요!");
+      e.preventDefault(); // 기본 이벤트(제출) 막기
+      loginPw.focus(); // 초점 이동
+      return;
+    }
+  });
+
+}
 
