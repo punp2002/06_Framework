@@ -267,6 +267,7 @@ ALTER TABLE "BOARD_IMG" ADD CONSTRAINT "PK_BOARD_IMG" PRIMARY KEY (
 ALTER TABLE "COMMENT" ADD CONSTRAINT "PK_COMMENT" PRIMARY KEY (
 	"COMMENT_NO"
 );
+-- 4/28 전부 수행함
 
 -------------------- FK -------------------------
 
@@ -364,6 +365,7 @@ ALTER TABLE "COMMENT" ADD
 CONSTRAINT "COMMENT_DEL_CHECK"
 CHECK("COMMENT_DEL_FL" IN ('Y', 'N') );
 	
+-- 4/28 수행함
 	
 /* 게시판 종류(BOARD_TYPE) 추가 */
 CREATE SEQUENCE SEQ_BOARD_CODE NOCACHE;
@@ -373,6 +375,12 @@ INSERT INTO "BOARD_TYPE" VALUES(SEQ_BOARD_CODE.NEXTVAL, '정보 게시판');
 INSERT INTO "BOARD_TYPE" VALUES(SEQ_BOARD_CODE.NEXTVAL, '자유 게시판');
 
 COMMIT;
+
+SELECT * FROM "BOARD_TYPE";
+
+SELECT BOARD_CODE "boardCode", BOARD_NAME "boardName"
+FROM "BOARD_TYPE"
+ORDER BY BOARD_CODE;
 
 
 ---------------------------------------------
@@ -399,6 +407,11 @@ COMMIT;
 
 
 SELECT * FROM "BOARD";
+-- 4/28 수행함
+
+
+
+
 
 ---------------------------------------------------
 -- 부모 댓글 번호 NULL 허용
@@ -425,6 +438,47 @@ BEGIN
 END;
 
 COMMIT;
+
+SELECT * FROM "COMMENT";
+
+SELECT COUNT(*) FROM "COMMENT";
+
+-- 특정 게시판(BOARD_CODE)에 삭제되지 않은 게시글 목록 조회
+-- 단, 최신글이 제일 위에 조회되도록 조회
+-- 작성일 : 몇 초/ 몇 분 / 몇 시간 전조회, 하루가 넘어가면 YYYY-MM-DD 형식 조회
+
+-- 게시글 번호 / 제목[댓글개수] / 작성자 닉네임 / 작성일 / 조회수 / 좋아요 개수
+
+-- 상관 서브쿼리
+-- 1) 메인쿼리 1행 조회
+-- 2) 1행ㅇ 조회 결과를 이용해서 서브쿼리 수행
+--   메인 쿼리 모두 이용될때까지
+SELECT BOARD_NO, BOARD_TITLE, READ_COUNT, MEMBER_NICKNAME,
+(SELECT COUNT(*) 
+FROM "COMMENT" C
+WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT,
+
+(SELECT COUNT(*)
+	FROM "BOARD_LIKE" L
+	WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT,
+	
+	CASE
+		WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 / 60
+		THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60 * 60) || '초 전'
+		WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24
+		THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60) || '분 전'
+		WHEN SYSDATE - BOARD_WRITE_DATE < 1
+		THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24) || '시간 전'
+	ELSE TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD')
+	END BOARD_WRITE_DATE
+
+
+FROM "BOARD" B
+JOIN "MEMBER" M ON(B.MEMBER_NO  = M.MEMBER_NO )
+WHERE BOARD_DEL_FL = 'N'
+AND BOARD_CODE = 1
+ORDER BY BOARD_NO DESC;
+
 
 -----------------------------------------------------
 
