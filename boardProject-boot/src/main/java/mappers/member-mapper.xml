@@ -20,5 +20,6 @@
 		WHERE MEMBER_EMAIL = #{memberEmail}
 		AND MEMBER_DEL_FL = 'N'	
 	</select>
-		 
+	
+
 </mapper>

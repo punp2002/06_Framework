@@ -545,6 +545,8 @@ AND BOARD_CODE = 1;
 
 
 
+
+
 -- 댓글 샘플데이터
 INSERT INTO "COMMENT"	
 VALUES( SEQ_COMMENT_NO.NEXTVAL, '부모 댓글 1',
