@@ -1,0 +1,159 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    font-family: 'Pretendard', sans-serif; 
+    color: #333; 
+}
+
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    width: 100%; 
+}
+
+header { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 20px 0; 
+    border-bottom: 1px solid #eee; 
+}
+
+header .logo { 
+    font-size: 24px; 
+    font-weight: bold; 
+}
+
+header nav a { 
+    margin: 0 15px; 
+    text-decoration: none; 
+    color: #333; 
+    font-weight: 500; 
+}
+
+.header-right { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+header select, header input { 
+    border: 1px solid #ccc; 
+    padding: 8px 12px; 
+    border-radius: 5px; 
+}
+
+.main-banner { 
+    position: relative; 
+    height: 400px; 
+    background: #444; 
+    color: white; 
+    display: flex; 
+    align-items: center; 
+}
+
+.banner-slide { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    opacity: 0; 
+    transition: opacity 1s ease-in-out; 
+    display: flex; 
+    align-items: center; 
+}
+
+.banner-slide.active { 
+    opacity: 1; 
+}
+
+.banner-next { 
+    position: absolute; 
+    right: 20px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    background: rgba(0,0,0,0.5); 
+    color: white; 
+    border: none; 
+    padding: 10px 15px; 
+    cursor: pointer; 
+}
+
+.give-section { 
+    padding: 40px 0; 
+}
+
+.give-section h2 { 
+    font-size: 20px; 
+    margin-bottom: 20px; 
+}
+
+.item-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; 
+}
+
+.item { 
+    display: flex; 
+    align-items: center; 
+    border: 1px solid #ddd; 
+    padding: 15px; 
+    border-radius: 10px; 
+    background: #fff; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+    transition: transform 0.3s, box-shadow 0.3s; 
+}
+
+.item:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+}
+
+.item img { 
+    width: 150px; 
+    height: 100px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    margin-right: 20px; 
+}
+
+.item .info { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.item .category { 
+    color: #6A4CFD; 
+    font-weight: 600; 
+    margin-bottom: 5px; 
+}
+
+.item .title { 
+    font-weight: bold; 
+    font-size: 16px; 
+    line-height: 1.4; 
+}
+
+footer { 
+    background: #fff; 
+    padding: 20px 0; 
+    border-top: 1px solid #eee; 
+    font-size: 12px; 
+    color: #999; 
+    text-align: center; 
+}
+
+footer a { 
+    margin: 0 10px; 
+    color: #999; 
+    text-decoration: none; 
+}
+
+.footer-content { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
