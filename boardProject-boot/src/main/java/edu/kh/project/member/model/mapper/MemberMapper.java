@@ -29,7 +29,7 @@ public interface MemberMapper {
 	 * @param inputMember
 	 * @return
 	 */
-	int signup(Member inputMember);
+	int signup(Member member);
 
 	
 }
