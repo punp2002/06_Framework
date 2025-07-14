@@ -52,7 +52,7 @@ public class FileConfig implements WebMvcConfigurer{
 	@Value("${my.board.resource-handler}") 
 	private String boardResourceHandler; // /images/board/**
 	
-	@Value("${my.board.resource-loaction}") 
+	@Value("${my.board.resource-location}") 
 	private String boardResourceLocation; // file:///C:/uploadFiles/board/
 	
 	// 요청 주소에 따라
